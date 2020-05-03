@@ -1,0 +1,44 @@
+{
+    "data": {
+        "total": 4,
+        "pagenum": 1,
+        "users": [{
+            "id": 1,
+            "date": "2016-05-02",
+            "name": "王小虎",
+            "shouji": "13185201314",
+            "province": "上海 普陀区 金沙江路",
+            "city": "普陀区",
+            "address": "上海市普陀区金沙江路 1518 弄",
+            "zhuangtai": true
+        }, {
+            "id": 2,
+            "date": "2016-05-03",
+            "name": "王小虎",
+            "shouji": "13185201314",
+            "province": "上海 普陀区 金沙江路",
+            "city": "普陀区",
+            "address": "上海市普陀区金沙江路 1518 弄",
+            "zhuangtai": true
+        }, {
+            "id": 3,
+            "date": "2016-05-03",
+            "name": "王小虎",
+            "shouji": "13185201314",
+            "province": "上海 普陀区 金沙江路",
+            "city": "普陀区",
+            "address": "上海市普陀区金沙江路 1518 弄",
+            "zhuangtai": true
+        }, {
+            "id": 4,
+            "date": "2016-05-03",
+            "name": "王小虎",
+            "shouji": "13185201314",
+            "province": "上海 普陀区 金沙江路",
+            "city": "普陀区",
+            "address": "上海市普陀区金沙江路 1518 弄",
+            "zhuangtai": false
+        }]
+    }
+
+}

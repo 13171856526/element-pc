@@ -1,0 +1,64 @@
+{
+    "menu": {
+        "data": [{
+            "id": 1,
+            "authName1": "主页",
+            "path": "zhuye",
+            "chidren": [{
+                "id": 11,
+                "authName2": "个人信息",
+                "path": null,
+                "children": []
+            }]
+        }, {
+            "id": 2,
+            "authName1": "用户",
+            "path": "yonghu",
+            "chidren": [{
+                "id": 12,
+                "authName2": "用户列表",
+                "path": null,
+                "children": []
+            }]
+        }, {
+            "id": 3,
+            "authName1": "文章",
+            "path": "wenzhang",
+            "chidren": [{
+                "id": 13,
+                "authName2": "文章1",
+                "path": null,
+                "children": []
+            }]
+        }, {
+            "id": 4,
+            "authName1": "设置",
+            "path": "shezhi",
+            "chidren": [{
+                "authName2": "选项1",
+                "children": [],
+                "id": 110,
+                "order": null,
+                "path": "users"
+            }, {
+                "authName2": "选项1",
+                "children": [],
+                "id": 111,
+                "order": null,
+                "path": "users1"
+            }]
+        }, {
+            "id": 5,
+            "authName1": "图表",
+            "path": "tubiao",
+            "chidren": [{
+                "id": 15,
+                "authName2": "图表1",
+                "path": null,
+                "children": []
+            }]
+        }]
+    }
+
+
+}

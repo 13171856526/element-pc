@@ -22,6 +22,7 @@ const routes = [{
     path: '/',
     name: 'Index',
     component: Index,
+    redirect:"/zhuye",
     children: [{
         path: "/zhuye",
         component: zhuye

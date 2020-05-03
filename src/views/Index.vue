@@ -42,41 +42,45 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.el-aside {
-  background-color: #1f222b;
-}
 .el-container {
   box-sizing: border-box;
   min-height: 91vh;
-}
-
-.el-header {
-  padding: 0;
-  box-sizing: border-box;
-  flex-shrink: 0;
-  border-bottom: 1px solid #f5f5f5;
-  .el-row {
-    width: 100%;
-    height: 100%;
-    .el-col {
+  .el-header {
+    padding: 0;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    border-bottom: 1px solid #f5f5f5;
+    .el-row {
+      width: 100%;
       height: 100%;
-      &:nth-child(1) {
-        width: 199px;
-        box-sizing: border-box;
-        background-color: #1f222b;
-        margin-right: 10px;
-        div {
-          color: #fff;
-          text-align: center;
-        }
-      }
-
-      .grid-content {
+      .el-col {
         height: 100%;
+        &:nth-child(1) {
+          width: 199px;
+          box-sizing: border-box;
+          background-color: #1f222b;
+          margin-right: 10px;
+          div {
+            color: #fff;
+            text-align: center;
+          }
+        }
+
+        .grid-content {
+          height: 100%;
+        }
       }
     }
   }
+  .el-aside {
+    background-color: #1f222b;
+  }
+  .el-main {
+    margin: 0;
+    padding: 0;
+  }
 }
+
 .bg-purple-dark {
   background: #99a9bf;
 }
@@ -86,8 +90,7 @@ export default {
 .el-submenu .el-menu-item {
   min-width: 199px;
 }
-.el-header,
-.el-footer {
+.el-header {
   color: #333;
   line-height: 60px;
 }

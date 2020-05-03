@@ -1,66 +1,75 @@
 <template>
   <div class="menu">
+    <!-- 侧边栏 -->
     <el-menu
-      :default-active="this.$route.path"
-      router
-      class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose"
-      @select="handleSelect_2"
       background-color="#1f222b"
       text-color="#fff"
       active-text-color="#ffd04b"
+      router
+      unique-opened
+      :default-active="activePath"
     >
-      <!-- 主页 -->
-      <el-menu-item index="/zhuye">
+      <!-- 一级菜单 -->
+      <el-submenu
+        :index="item1.id + ''"
+        v-for="item1 in menu_item"
+        :key="item1.id"
+      >
+        <!-- 一级菜单模板 -->
         <template slot="title">
-          <i class="el-icon-location"></i>
-          <span>主页</span>
+          <i :class="iconList[item1.id]"></i>
+          <span>{{ item1.authName1 }}</span>
         </template>
-      </el-menu-item>
-      <!-- 用户 -->
-      <el-menu-item index="/yonghu">
-        <i class="el-icon-menu"></i>
-        <span slot="title">用户</span>
-      </el-menu-item>
-      <!-- 文章 -->
-      <el-menu-item index="/wenzhang">
-        <i class="el-icon-document"></i>
-        <span slot="title">文章</span>
-      </el-menu-item>
-      <!-- 设置 -->
-      <el-submenu index="/shezhi">
-        <template slot="title">
-          <i class="el-icon-setting"></i>
-          <span>设置</span>
-        </template>
-        <el-menu-item-group>
-          <template slot="title">分组一</template>
-          <el-menu-item index="/4-1">选项1</el-menu-item>
-          <el-menu-item index="/4-2">选项2</el-menu-item>
-        </el-menu-item-group>
+        <!-- 二级菜单 -->
+        <el-menu-item
+          :index="'/' + item1.path"
+          v-for="item2 in item1.chidren"
+          :key="item2.id"
+          @click="sevaNavState('/' + item1.path)"
+        >
+          {{ item2.authName2 }}
+        </el-menu-item>
       </el-submenu>
-      <!-- 图表 -->
-      <el-menu-item index="/tubiao">
-        <i class="el-icon-share"></i>
-        <span slot="title">图表</span>
-      </el-menu-item>
     </el-menu>
   </div>
 </template>
 <script>
+let { log } = console;
 export default {
+  data() {
+    return {
+      menu_item: [],
+      iconList: {
+        "1": "el-icon-location",
+        "2": "el-icon-menu",
+        "3": "el-icon-document",
+        "4": "el-icon-setting",
+        "5": "el-icon-share",
+      },
+      activePath: "",
+    };
+  },
+  created() {
+    this.activePath = window.sessionStorage.getItem('activePath');
+  },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+    sevaNavState(activePath) {
+      window.sessionStorage.setItem("activePath", activePath);
+      this.activePath = activePath;
     },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleSelect_2(key, keyPath) {
-      console.log(key, keyPath);
-    },
+  },
+  mounted() {
+    this.$axios.get("menu.json").then((res) => {
+      log(res.data.menu.data);
+      this.menu_item = res.data.menu.data;
+    });
   },
 };
 </script>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.el-aside {
+  .el-menu {
+    border: none;
+  }
+}
+</style>
