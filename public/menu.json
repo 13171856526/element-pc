@@ -26,7 +26,7 @@
             "path": "wenzhang",
             "chidren": [{
                 "id": 13,
-                "authName2": "文章1",
+                "authName2": "文章",
                 "path": null,
                 "children": []
             }]
@@ -35,25 +35,19 @@
             "authName1": "设置",
             "path": "shezhi",
             "chidren": [{
-                "authName2": "选项1",
+                "authName2": "选项",
                 "children": [],
                 "id": 110,
                 "order": null,
                 "path": "users"
-            }, {
-                "authName2": "选项1",
-                "children": [],
-                "id": 111,
-                "order": null,
-                "path": "users1"
             }]
         }, {
             "id": 5,
             "authName1": "图表",
-            "path": "tubiao",
+            "path": "echarts",
             "chidren": [{
                 "id": 15,
-                "authName2": "图表1",
+                "authName2": "图表",
                 "path": null,
                 "children": []
             }]

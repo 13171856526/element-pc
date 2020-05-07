@@ -1,35 +1,68 @@
 <template>
   <!-- 文章 -->
   <div class="wenzhang">
-    <template style="height:100%">
-      <el-table
-        ref="multipleTable"
-        :data="tableData"
-        tooltip-effect="dark"
-        style="width: 100%; height:100%"
-        @selection-change="handleSelectionChange"
-      >
-        <el-table-column type="selection" width="55"> </el-table-column>
-        <el-table-column label="标题" width="400">
-          <template slot-scope="scope">{{ scope.row.date }}</template>
-        </el-table-column>
-        <el-table-column prop="name" label="作者" width="220">
-        </el-table-column>
-        <el-table-column prop="address" label="日期" width="300">
-        </el-table-column>
-        <el-table-column prop="address" label="状态" show-overflow-tooltip>
-        </el-table-column>
-        <el-table-column fixed="right" label="操作" width="140">
-          <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small"
-              >查看</el-button
-            >
-            <el-button type="text" size="small">编辑</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
-      <fenyeqi></fenyeqi>
-    </template>
+    <el-table :data="wenzhanglist">
+      <el-table-column type="index"> </el-table-column>
+      <el-table-column prop="biaoti" label="标题" width="500">
+      </el-table-column>
+      <el-table-column prop="userName" label="作者"></el-table-column>
+      <el-table-column prop="bornDate" sortable label="日期"></el-table-column>
+      <el-table-column prop="status" label="状态">
+        <template slot-scope="scope">
+          {{ scope.row.status ? "启用" : "禁用" }}
+        </template>
+      </el-table-column>
+      <el-table-column prop="zhuangtai" label="操作">
+        <template slot-scope="scope">
+          <!-- 编辑按钮 -->
+          <el-button
+            type="primary"
+            size="mini"
+            @click="bianji(scope.$index, scope.row)"
+          >
+            <i class="el-icon-edit"></i>
+          </el-button>
+          <!-- 删除按钮 -->
+          <el-button
+            size="mini"
+            type="danger"
+            @click="handleDelete(scope.$index, scope.row)"
+          >
+            <i class="el-icon-delete"></i>
+          </el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <!-- 修改用户的对话框 -->
+    <el-dialog title="修改用户" :visible.sync="dialogVisible" width="30%">
+      <el-form>
+        <el-form-item label="标题" prop="bornDate">
+          <el-input v-model="wenzhang.biaoti"></el-input>
+        </el-form-item>
+        <el-form-item label="作者" prop="name">
+          <el-input v-model="wenzhang.userName"></el-input>
+        </el-form-item>
+        
+        <el-form-item label="日期"  prop="shouji">
+          <el-input v-model="wenzhang.bornDate"></el-input>
+        </el-form-item>
+        <el-switch
+          v-model="wenzhang.status"
+          active-color="#13ce66"
+          inactive-color="#ff4949"
+          :active-value="1"
+          :inactive-value="0"
+        >
+        </el-switch>
+      </el-form>
+
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false"
+          >确 定</el-button
+        >
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -37,45 +70,32 @@ import fenyeqi from "../fenyeqi";
 export default {
   data() {
     return {
-      tableData: [
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333,
-          tag: "家",
-        },
-        {
-          date: "2016-05-04",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1517 弄",
-          zip: 200333,
-          tag: "公司",
-        },
-        {
-          date: "2016-05-01",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1519 弄",
-          zip: 200333,
-          tag: "家",
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1516 弄",
-          zip: 200333,
-          tag: "公司",
-        },
-      ],
+      wenzhanglist: [],
+      wenzhang: {
+        id: "",
+        userName: "",
+        bornDate: "",
+        status: "",
+        biaoti: "",
+      },
+      dialogVisible: false,
     };
+  },
+  mounted() {
+    this.wenzhangget();
+  },
+  methods: {
+    wenzhangget() {
+      this.$axios.get("/api/wenzhang").then((res) => {
+        console.log(res);
+        this.wenzhanglist = res.data;
+      });
+    }, // 修改编辑用户的对话框
+    bianji(index, row) {
+      console.log(index, row);
+      this.wenzhang = Object.assign({}, row);
+      this.dialogVisible = true;
+    },
   },
   components: {
     fenyeqi,

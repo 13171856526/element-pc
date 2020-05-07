@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       // 表单登录title
-      fromtop: "系统登录",
+      fromtop: "登录系统",
       // 登录表单的数据绑定对象
       loginFrom: {
         username: "admin",
@@ -81,13 +81,13 @@ export default {
     // 登录跳转到的路由路径
     login() {
       this.$refs.ruleForm.validate((valid) => {
-        // 判断是否符合正则标准，符合则进入，不符合则 return
         if (!valid) return this.$message.error("登录失败");
-        // console.log(valid);
         this.$message.success("登录成功");
+        console.log(valid);
         this.$router.push("/zhuye");
-        // Loading.service(options);
       });
+      // 本地存储   转换成json
+      sessionStorage.setItem("user", JSON.stringify(this.loginFrom));
     },
   },
 };

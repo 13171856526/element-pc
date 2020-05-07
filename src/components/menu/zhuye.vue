@@ -47,8 +47,7 @@
         <el-tab-pane label="专业技能"
           ><template>
             <el-table :data="tableData" style="width: 100%">
-              <el-table-column type="index" >
-              </el-table-column>
+              <el-table-column type="index"> </el-table-column>
               <el-table-column
                 prop="shuxijineng"
                 label="熟悉技能"
@@ -76,14 +75,11 @@
             </el-table> </template
         ></el-tab-pane>
         <el-tab-pane label="项目">
-          <swiper></swiper>
+          <!-- <swiper></swiper> -->
         </el-tab-pane>
         <el-tab-pane label="自我评价">自我评价</el-tab-pane>
       </el-tabs>
     </div>
-    <!-- <template>
-      <fenyeqi></fenyeqi>
-    </template> -->
   </div>
 </template>
 <script>
@@ -102,8 +98,8 @@ export default {
         email: "13171856526@163.com",
         nianxian: "一年",
       },
+      // 求职意向
       form1: {
-        // 求职意向
         gangwei: "前端工程师",
         yuexin: "面议",
         xingzhi: "全职",
@@ -187,6 +183,7 @@ export default {
       ],
     };
   },
+  created() {},
   methods: {},
   components: {
     // 绑定分页器
@@ -194,6 +191,22 @@ export default {
     // 绑定轮播图
     swiper,
   },
+  // 进入组件内守卫
+  // beforeRouteEnter: (to, from, next) => {
+  //   console.log(from.path);
+  //   if (from.path == "/") {
+  //     next("/Login");
+  //   } else {
+  //     next();
+  //   }
+  // },
+  // beforeRouteLeave: (to, from, next) => {
+  //   if (confirm("忍心离开吗") == true) {
+  //     next();
+  //   } else {
+  //     next(false);
+  //   }
+  // },
 };
 </script>
 //

@@ -6,7 +6,8 @@ import zhuye from '../components/menu/zhuye'
 import yonghu from '../components/menu/yonghu'
 import wenzhang from '../components/menu/wenzhang'
 import shezhi from '../components/menu/shezhi'
-import tubiao from '../components/menu/tubiao'
+import echarts from '../components/menu/echarts'
+
 Vue.use(VueRouter)
 
 const routes = [{
@@ -22,7 +23,7 @@ const routes = [{
     path: '/',
     name: 'Index',
     component: Index,
-    redirect:"/zhuye",
+    redirect: "/zhuye",
     children: [{
         path: "/zhuye",
         component: zhuye
@@ -40,8 +41,8 @@ const routes = [{
         component: shezhi
       },
       {
-        path: "/tubiao",
-        component: tubiao
+        path: "/echarts",
+        component: echarts
       },
     ]
   }
@@ -52,5 +53,16 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+// 挂载全局路由守卫
+// router.beforeEach((to, from, next) => {
+//   console.log(to);
+//   console.log(from);
+//   if (to.path == '/Login') {
+//     next();
+//   } else {
+//     alert('2')
+//     next('/Login');
+//   }
+// })
 
 export default router
